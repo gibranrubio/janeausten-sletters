@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Austen's Letters - Limited Edition Subscription</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Clean Navigation */
+        .tab-navigation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            max-width: 300px;
+            margin: 0 auto;
+            background: #f3f4f6;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: #6b7280;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: #1f2937;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #374151;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            padding-top: 5rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #111827;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .limited-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            border: 1px solid #fde68a;
+        }
+
+        .hero-cta {
+            background: #1f2937;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .hero-cta:hover {
+            background: #374151;
+            transform: translateY(-1px);
+        }
+
+        /* Clean Sections */
+        .section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #111827;
+            text-align: center;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+
+        .section p {
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* Price Display */
+        .price-card {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-detail {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Feature List */
+        .feature-list {
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 3px solid #1f2937;
+        }
+
+        .feature-icon {
+            font-size: 1.25rem;
+            margin-right: 1rem;
+            margin-top: 0.125rem;
+        }
+
+        .feature-content h4 {
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-content p {
+            color: #6b7280;
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        /* Form */
+        .email-form {
+            max-width: 400px;
+            margin: 2rem auto;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: #1f2937;
+            box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #1f2937;
+            color: white;
+            padding: 0.875rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .submit-btn:hover {
+            background: #374151;
+        }
+
+        /* Guarantee */
+        .guarantee {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #166534;
+        }
+
+        /* Learn More Specific Styles */
+        .quote-block {
+            background: #f9fafb;
+            border-left: 4px solid #1f2937;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-text {
+            font-style: italic;
+            color: #374151;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .quote-attribution {
+            color: #6b7280;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .feature-card h5 {
+            color: #111827;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        .back-to-cta {
+            width: 100%;
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin: 2rem 0;
+            transition: all 0.2s ease;
+        }
+
+        .back-to-cta:hover {
+            background: #374151;
+        }
+
+        /* Urgency Section */
+        .urgency-section {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .urgency-section h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .urgency-section p {
+            color: #7f1d1d;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .feature-item {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .tab-navigation {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Clean Navigation -->
+    <nav class="tab-navigation">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('subscribe')">Subscribe</button>
+            <button class="tab-btn" onclick="switchTab('learn-more')">Learn More</button>
+        </div>
+    </nav>
+
+    <!-- Subscribe Tab -->
+    <div id="subscribe-tab" class="tab-content active">
+        
+        <!-- Hero -->
+        <section class="hero">
+            <div class="limited-badge">⚡ Only 1,000 spots available</div>
+            <h1>Jane Austen's Letters</h1>
+            <p class="hero-subtitle">Experience history's most intimate correspondence delivered to your door</p>
+            <a href="#subscribe" class="hero-cta">Get Started - $15/month</a>
+        </section>
+
+        <!-- Value Proposition -->
+        <section class="section">
+            <h2>A once-in-history collection</h2>
+            
+            <div class="price-card">
+                <div class="price">$15<span style="font-size: 1rem; color: #6b7280;">/month</span></div>
+                <p class="price-detail">24 authentic recreations • 12 months • Delivered monthly</p>
+            </div>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">✉️</span>
+                    <div class="feature-content">
+                        <h4>Exact historical recreations</h4>
+                        <p>Period-accurate paper, hand-mixed inks, and precise folding techniques</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🕯️</span>
+                    <div class="feature-content">
+                        <h4>Authentic wax seals</h4>
+                        <p>Hand-crafted seals using 18th-century methods with Jane's monogram</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">💌</span>
+                    <div class="feature-content">
+                        <h4>Complete correspondence</h4>
+                        <p>Letters to Cassandra, family notes, and her father's publisher letters</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">📜</span>
+                    <div class="feature-content">
+                        <h4>Historical context</h4>
+                        <p>Expert commentary and hidden stories behind each letter</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Urgency -->
+        <section class="section">
+            <div class="urgency-section">
+                <h3>Limited to 1,000 subscribers</h3>
+                <p>Due to the handcrafted nature of each letter, we can only accept 1,000 members for our inaugural year.</p>
+                <p><strong>Once we reach capacity, enrollment closes.</strong></p>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="section">
+            <div class="testimonial">
+                <p class="testimonial-text">"I've spent 30 years studying Austen, but holding these recreated letters brought me to tears. It's the closest we'll ever get to sitting with Jane herself."</p>
+                <p class="testimonial-author">— Dr. Margaret Hughes, Austen Scholar</p>
+            </div>
+
+            <div class="testimonial">
+                <p class="testimonial-text">"When our first letter arrived with that broken wax seal... we understood. This isn't a subscription, it's time travel."</p>
+                <p class="testimonial-author">— Sarah M., Book Club Leader</p>
+            </div>
+        </section>
+
+        <!-- Subscribe Form -->
+        <section class="section" id="subscribe">
+            <h2>Start your subscription</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Join 1,000 Austen devotees experiencing her letters exactly as Cassandra did.</p>
+
+            <form class="email-form" onsubmit="handleSubmit(event)">
+                <input type="email" class="email-input" placeholder="Enter your email" required>
+                <button type="submit" class="submit-btn">Subscribe - $15/month</button>
+            </form>
+
+            <div class="guarantee">
+                <strong>100% satisfaction guarantee</strong> — If you're not completely enchanted by your first letter, we'll refund your entire subscription.
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Learn More Tab -->
+    <div id="learn-more-tab" class="tab-content">
+        
+        <!-- Introduction -->
+        <section class="section">
+            <h2>What makes this extraordinary</h2>
+            
+            <div class="quote-block">
+                <p class="quote-text">What dreadful hot weather we have. It keeps one in a continual state of inelegance.</p>
+                <p class="quote-attribution">— Jane's earliest surviving letter</p>
+            </div>
+
+            <p>For 200 years, we've read Jane Austen's words. But we've never truly seen her letters—the careful folds, the wax seals, the sentences cut out by Cassandra to protect family secrets.</p>
+
+            <p>Each letter tells two stories: the words she wrote, and the world she lived in. This is your chance to experience both.</p>
+        </section>
+
+        <!-- World First -->
+        <section class="section">
+            <h3>A world-first achievement</h3>
+            
+            <p>In over two centuries since Jane's death, no one has ever compiled all of her surviving letters in their complete physical form.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Scattered worldwide</h5>
+                    <p>Morgan Library (NY), British Library (London), Jane Austen House (Hampshire), Bodleian Library (Oxford), and private collections</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Never complete</h5>
+                    <p>Scholars have transcribed fragments. Museums preserve pieces. But the full story has never been told.</p>
+                </div>
+            </div>
+
+            <p>Until now. We've negotiated with institutions worldwide to bring you the complete collection for the first time in history.</p>
+        </section>
+
+        <!-- Cassandra's Story -->
+        <section class="section">
+            <h3>Through Cassandra's eyes</h3>
+            
+            <p>Jane's beloved sister Cassandra wasn't just her closest confidant—she was a talented artist whose watercolors capture the world Jane inhabited.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">I have lost a treasure, such a sister, such a friend as never can have been surpassed.</p>
+                <p class="quote-attribution">— Cassandra on Jane's death</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Original artwork</h5>
+                    <p>High-quality reproductions of Cassandra's watercolors from each letter's period</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Family portraits</h5>
+                    <p>See the faces Jane knew and loved, painted by the sister who knew her best</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Father's Support -->
+        <section class="section">
+            <h3>A father's revolutionary faith</h3>
+            
+            <p>Reverend George Austen didn't just encourage Jane's writing—he actively championed it. In 1797, he wrote to publisher Thomas Cadell:</p>
+
+            <div class="quote-block">
+                <p class="quote-text">Sir, I have in my possession a manuscript novel, comprising 3 vols., about the length of Miss Burney's Evelina...</p>
+                <p class="quote-attribution">— George Austen to Thomas Cadell, 1797</p>
+            </div>
+
+            <p>This was unheard of—a father promoting his daughter's literary ambitions when women barely had publishing rights. You'll receive this groundbreaking letter as part of your collection.</p>
+        </section>
+
+        <!-- Letter Writing Economics -->
+        <section class="section">
+            <h3>The economics of letter writing</h3>
+            
+            <p>Jane claimed she had "attained the true art of letter writing, which is to say on paper exactly what you would say to a person by word of mouth."</p>
+
+            <div class="quote-block">
+                <p class="quote-text">I've been talking to you as fast as I could the whole of this letter.</p>
+                <p class="quote-attribution">— Jane to Cassandra</p>
+            </div>
+
+            <p>But there's genius in the cramped handwriting. Postage was paid by the recipient and charged by sheets and distance. Neither sister had money to spare, so Jane packed entire conversations onto single pages.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Economic reality</h5>
+                    <p>Single sheet = less cost. See how Jane squeezed maximum emotion into minimal space.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Free postage</h5>
+                    <p>When you see two sheets? Jane had found free postage or hand delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hidden Secrets -->
+        <section class="section">
+            <h3>What Cassandra hid (and why)</h3>
+            
+            <p>After Jane's death, Cassandra carefully preserved her sister's letters—while protecting family secrets. You can see where she cut out sentences, likely removing unkind remarks or health details.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">She was the sun of my life, the gilder of every pleasure, the soother of every sorrow. I had not a thought concealed from her... it is as if I lost a part of myself.</p>
+                <p class="quote-attribution">— Cassandra's grief letter</p>
+            </div>
+
+            <p>Each subscription reveals these hidden stories—what survived, what was cut away, and why.</p>
+        </section>
+
+        <!-- Physical Experience -->
+        <section class="section">
+            <h3>Why physical letters matter</h3>
+            
+            <p>There's something your phone screen can't replicate. The weight of paper. The anticipation as you unfold each crease. The intimacy of holding something meant for one person's eyes.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Authentic materials</h5>
+                    <p>Period-accurate paper, hand-mixed inks, traditional folding techniques</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Wax seals</h5>
+                    <p>Hand-crafted using 18th-century methods with Jane's monogram</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Mail experience</h5>
+                    <p>Delivered exactly as Cassandra received them—through your letterbox</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Hidden treasures</h5>
+                    <p>Pressed flowers, historical artifacts, and period extras in each delivery</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <h3>Ready to experience history?</h3>
+            
+            <p>Digital screens create distance. Physical letters create connection. When you unfold Jane's recreated correspondence, you're touching history.</p>
+
+            <button class="back-to-cta" onclick="switchTab('subscribe')">
+                Subscribe Now - $15/month
+            </button>
+        </section>
+
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            const targetTab = document.getElementById(tabName + '-tab');
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+            
+            // Add active class to correct button
+            if (tabName === 'subscribe') {
+                document.querySelector('.tab-btn:first-child').classList.add('active');
+            } else if (tabName === 'learn-more') {
+                document.querySelector('.tab-btn:last-child').classList.add('active');
+            }
+            
+            // Scroll to top when switching tabs
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.email-input').value;
+            
+            const btn = event.target.querySelector('.submit-btn');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Processing...';
+            btn.style.background = '#059669';
+            
+            setTimeout(() => {
+                btn.textContent = 'Welcome!';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '#1f2937';
+                    event.target.reset();
+                    
+                    alert('🎉 Welcome! Check your email for next steps.');
+                }, 2000);
+            }, 1500);
+
+            console.log('New subscriber:', email);
+        }
+
+        // Smooth scrolling for CTA links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
