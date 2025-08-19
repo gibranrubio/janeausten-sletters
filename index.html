@@ -3,418 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jane Austen's Letters - Limited Edition Subscription</title>
+    <title>Letters From Jane Austen — A First-of-its-Kind Mail Experience</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            background: #ffffff;
-            color: #1f2937;
-            line-height: 1.6;
-            overflow-x: hidden;
+            background: #ffffff; color: #1f2937; line-height: 1.6; overflow-x: hidden;
         }
-
         /* Clean Navigation */
         .tab-navigation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            position: fixed; top: 0; left: 0; right: 0;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid #e5e7eb;
-            z-index: 1000;
-            padding: 1rem 2rem;
+            border-bottom: 1px solid #e5e7eb; z-index: 1000; padding: 1rem 2rem;
         }
-
         .tab-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            max-width: 300px;
-            margin: 0 auto;
-            background: #f3f4f6;
-            border-radius: 8px;
-            padding: 4px;
+            display: flex; justify-content: center; gap: 0.5rem;
+            max-width: 300px; margin: 0 auto; background: transparent; border-radius: 8px; padding: 4px;
         }
-
+        .tab-buttons {
+            display: flex; justify-content: center; gap: 0.5rem;
+            max-width: 300px; margin: 0 auto; background: transparent; border-radius: 8px; padding: 4px;
+        }
         .tab-btn {
-            background: transparent;
+            background: linear-gradient(145deg, #f0f2f5, #d8dde6);
             border: none;
-            color: #6b7280;
+            color: #495057;
             padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex: 1;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 8px 16px rgba(0, 0, 0, 0.08),
+                0 4px 8px rgba(0, 0, 0, 0.06),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 50px;
+            pointer-events: none;
+        }
         .tab-btn.active {
-            background: #ffffff;
-            color: #1f2937;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            background: linear-gradient(145deg, #e8f0e8, #d4e4d4);
+            color: #2d5016;
+            box-shadow: 
+                0 8px 16px rgba(0, 0, 0, 0.15),
+                0 4px 8px rgba(0, 0, 0, 0.12),
+                0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 4px 8px rgba(0, 0, 0, 0.1),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6),
+                inset 1px 0 0 rgba(255, 255, 255, 0.3),
+                inset -1px 0 0 rgba(0, 0, 0, 0.1);
+            transform: translateY(2px);
         }
-
         .tab-btn:hover:not(.active) {
-            color: #374151;
+            background: linear-gradient(145deg, #f0f4f0, #e1ebe1);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.15),
+                0 12px 24px rgba(0, 0, 0, 0.12),
+                0 6px 12px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.5),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .tab-btn:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 4px 8px rgba(0, 0, 0, 0.12),
+                0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 4px 8px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
-        /* Tab Content */
-        .tab-content {
-            display: none;
-            padding-top: 5rem;
-        }
+        /* Tabs */
+        .tab-content { display: none; padding-top: 5rem; }
+        .tab-content.active { display: block; }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #111827;
-            letter-spacing: -0.025em;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            font-weight: 400;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
+        /* Hero */
+        .hero { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; color: #111827; letter-spacing: -0.025em; }
+        .hero-subtitle { font-size: 1.25rem; color: #6b7280; margin-bottom: 2rem; font-weight: 400; max-width: 680px; margin-left: auto; margin-right: auto; }
         .limited-badge {
-            display: inline-flex;
-            align-items: center;
-            background: #fef3c7;
-            color: #92400e;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            border: 1px solid #fde68a;
+            display: inline-flex; align-items: center; background: #fef3c7; color: #92400e;
+            padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.875rem; font-weight: 500;
+            margin-bottom: 2rem; border: 1px solid #fde68a;
         }
-
         .hero-cta {
-            background: #1f2937;
-            color: white;
+            background: linear-gradient(145deg, #f0f2f5, #d8dde6);
+            color: #495057;
             padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        .hero-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 50px;
+            pointer-events: none;
+        }
         .hero-cta:hover {
-            background: #374151;
-            transform: translateY(-1px);
+            background: linear-gradient(145deg, #f4f0f2, #e8dde3);
+            transform: translateY(-4px);
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.18),
+                0 15px 30px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.5),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .hero-cta:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 6px 12px rgba(0, 0, 0, 0.15),
+                0 3px 6px rgba(0, 0, 0, 0.1),
+                inset 0 4px 8px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
-        /* Clean Sections */
-        .section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-        }
+        /* Sections */
+        .section { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
+        .section h2 { font-size: 2rem; font-weight: 600; margin-bottom: 1.5rem; color: #111827; text-align: center; }
+        .section h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #111827; }
+        .section p { color: #4b5563; margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
 
-        .section h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #111827;
-            text-align: center;
-        }
-
-        .section h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #111827;
-        }
-
-        .section p {
-            color: #4b5563;
-            margin-bottom: 1.5rem;
-            font-size: 1rem;
-            line-height: 1.7;
-        }
-
-        /* Price Display */
+        /* Price */
         .price-card {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
+            background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 12px; padding: 2rem; text-align: center; margin: 2rem 0;
         }
+        .price { font-size: 3rem; font-weight: 700; color: #111827; margin-bottom: 0.5rem; }
+        .price-detail { color: #6b7280; font-size: 1rem; }
 
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 0.5rem;
-        }
-
-        .price-detail {
-            color: #6b7280;
-            font-size: 1rem;
-        }
-
-        /* Feature List */
-        .feature-list {
-            margin: 2rem 0;
-        }
-
+        /* Features */
+        .feature-list { margin: 2rem 0; }
         .feature-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-            padding: 1.5rem;
-            background: #f9fafb;
-            border-radius: 8px;
-            border-left: 3px solid #1f2937;
+            display: flex; align-items: flex-start; margin-bottom: 1.5rem; padding: 1.5rem;
+            background: #f9fafb; border-radius: 8px; border-left: 3px solid #1f2937;
         }
-
-        .feature-icon {
-            font-size: 1.25rem;
-            margin-right: 1rem;
-            margin-top: 0.125rem;
-        }
-
-        .feature-content h4 {
-            font-weight: 600;
-            color: #111827;
-            margin-bottom: 0.25rem;
-        }
-
-        .feature-content p {
-            color: #6b7280;
-            margin: 0;
-            font-size: 0.875rem;
-        }
+        .feature-icon { font-size: 1.25rem; margin-right: 1rem; margin-top: 0.125rem; }
+        .feature-content h4 { font-weight: 600; color: #111827; margin-bottom: 0.25rem; }
+        .feature-content p { color: #6b7280; margin: 0; font-size: 0.9rem; }
 
         /* Testimonials */
-        .testimonial {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 2rem;
-            margin: 1.5rem 0;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: #374151;
-            margin-bottom: 1rem;
-            font-size: 1.125rem;
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            color: #6b7280;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
+        .testimonial { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 2rem; margin: 1.5rem 0; }
+        .testimonial-text { font-style: italic; color: #374151; margin-bottom: 1rem; font-size: 1.125rem; line-height: 1.6; }
+        .testimonial-author { color: #6b7280; font-weight: 500; font-size: 0.875rem; }
 
         /* Form */
-        .email-form {
-            max-width: 400px;
-            margin: 2rem auto;
-        }
-
+        .email-form { max-width: 400px; margin: 2rem auto; }
         .email-input {
-            width: 100%;
-            padding: 0.875rem 1rem;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            transition: border-color 0.2s ease;
+            width: 100%; padding: 0.875rem 1rem; border: 1px solid #d1d5db; border-radius: 8px;
+            font-size: 1rem; margin-bottom: 1rem; transition: border-color 0.2s ease;
         }
-
-        .email-input:focus {
-            outline: none;
-            border-color: #1f2937;
-            box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.1);
-        }
-
+        .email-input:focus { outline: none; border-color: #1f2937; box-shadow: 0 0 0 3px rgba(31,41,55,0.1); }
         .submit-btn {
             width: 100%;
-            background: #1f2937;
-            color: white;
+            background: linear-gradient(145deg, #f0f2f5, #d8dde6);
+            color: #495057;
             padding: 0.875rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 50px;
+            pointer-events: none;
+        }
         .submit-btn:hover {
-            background: #374151;
+            background: linear-gradient(145deg, #f2f0f4, #e3dde8);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.18),
+                0 12px 24px rgba(0, 0, 0, 0.12),
+                0 6px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.5),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .submit-btn:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 6px 12px rgba(0, 0, 0, 0.15),
+                0 3px 6px rgba(0, 0, 0, 0.1),
+                inset 0 4px 8px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
         /* Guarantee */
         .guarantee {
-            background: #f0fdf4;
-            border: 1px solid #bbf7d0;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1rem;
-            font-size: 0.875rem;
-            color: #166534;
+            background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 1rem; margin-top: 1rem;
+            font-size: 0.875rem; color: #166534;
         }
 
-        /* Learn More Specific Styles */
+        /* Learn More Styles */
         .quote-block {
-            background: #f9fafb;
-            border-left: 4px solid #1f2937;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border-radius: 0 8px 8px 0;
+            background: #f9fafb; border-left: 4px solid #1f2937; padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0;
         }
-
-        .quote-text {
-            font-style: italic;
-            color: #374151;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        .quote-attribution {
-            color: #6b7280;
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .feature-card {
-            background: #ffffff;
-            border: 1px solid #e5e7eb;
-            border-radius: 8px;
-            padding: 1.5rem;
-        }
-
-        .feature-card h5 {
-            color: #111827;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-card p {
-            color: #6b7280;
-            margin: 0;
-            font-size: 0.875rem;
-        }
+        .quote-text { font-style: italic; color: #374151; font-size: 1.125rem; margin-bottom: 1rem; }
+        .quote-attribution { color: #6b7280; font-weight: 500; font-size: 0.875rem; }
+        .feature-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 2rem 0; }
+        .feature-card { background: #ffffff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 1.5rem; }
+        .feature-card h5 { color: #111827; font-weight: 600; margin-bottom: 0.5rem; }
+        .feature-card p { color: #6b7280; margin: 0; font-size: 0.9rem; }
 
         .back-to-cta {
             width: 100%;
-            background: #1f2937;
-            color: white;
+            background: linear-gradient(145deg, #f0f2f5, #d8dde6);
+            color: #495057;
             padding: 1rem;
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
             margin: 2rem 0;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 8px 16px rgba(0, 0, 0, 0.1),
+                0 4px 8px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.4),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
-
+        .back-to-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%);
+            border-radius: 50px;
+            pointer-events: none;
+        }
         .back-to-cta:hover {
-            background: #374151;
+            background: linear-gradient(145deg, #f4f2f0, #e8e3dd);
+            transform: translateY(-3px);
+            box-shadow: 
+                0 30px 60px rgba(0, 0, 0, 0.18),
+                0 12px 24px rgba(0, 0, 0, 0.12),
+                0 6px 12px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+                inset 1px 0 0 rgba(255, 255, 255, 0.5),
+                inset -1px 0 0 rgba(0, 0, 0, 0.05);
+        }
+        .back-to-cta:active {
+            transform: translateY(2px);
+            box-shadow: 
+                0 6px 12px rgba(0, 0, 0, 0.15),
+                0 3px 6px rgba(0, 0, 0, 0.1),
+                inset 0 4px 8px rgba(0, 0, 0, 0.12),
+                inset 0 2px 4px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
         }
 
-        /* Urgency Section */
+        /* Urgency */
         .urgency-section {
-            background: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            margin: 2rem 0;
+            background: #fef2f2; border: 1px solid #fecaca; border-radius: 12px; padding: 2rem; text-align: center; margin: 2rem 0;
         }
-
-        .urgency-section h3 {
-            color: #dc2626;
-            margin-bottom: 1rem;
-        }
-
-        .urgency-section p {
-            color: #7f1d1d;
-            margin-bottom: 1rem;
-        }
+        .urgency-section h3 { color: #dc2626; margin-bottom: 1rem; }
+        .urgency-section p { color: #7f1d1d; margin-bottom: 1rem; }
 
         /* Responsive */
         @media (min-width: 768px) {
-            .hero h1 {
-                font-size: 4rem;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .feature-item {
-                display: flex;
-            }
+            .hero h1 { font-size: 4rem; }
+            .feature-grid { grid-template-columns: 1fr 1fr; }
+            .feature-item { display: flex; }
         }
-
         @media (max-width: 640px) {
-            .hero {
-                padding: 2rem 1rem;
-            }
-            
-            .section {
-                padding: 2rem 1rem;
-            }
-            
-            .tab-navigation {
-                padding: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+            .hero { padding: 2rem 1rem; }
+            .section { padding: 2rem 1rem; }
+            .tab-navigation { padding: 1rem; }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Clean Navigation -->
+    <!-- Navigation -->
     <nav class="tab-navigation">
         <div class="tab-buttons">
             <button class="tab-btn active" onclick="switchTab('subscribe')">Subscribe</button>
@@ -424,136 +364,203 @@
 
     <!-- Subscribe Tab -->
     <div id="subscribe-tab" class="tab-content active">
-        
         <!-- Hero -->
         <section class="hero">
-            <div class="limited-badge">⚡ Only 1,000 spots available</div>
-            <h1>Jane Austen's Letters</h1>
-            <p class="hero-subtitle">Experience history's most intimate correspondence delivered to your door</p>
-            <a href="#subscribe" class="hero-cta">Get Started - $15/month</a>
+            <div class="limited-badge">✉️ A first-of-its-kind subscription for Janeites</div>
+            <h1>Letters From Jane Austen</h1>
+            <p class="hero-subtitle">Step into Jane's world through her letters — the truest portrait of Jane as a person, folded, sealed, and alive with gossip, wit, and sisterly intimacy.</p>
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="hero-cta">Join the Founding Run</a>
         </section>
 
-        <!-- Value Proposition -->
+        <!-- Opening Quote -->
         <section class="section">
-            <h2>A once-in-history collection</h2>
-            
-            <div class="price-card">
-                <div class="price">$15<span style="font-size: 1rem; color: #6b7280;">/month</span></div>
-                <p class="price-detail">24 authentic recreations • 12 months • Delivered monthly</p>
+            <div class="quote-block">
+                <p class="quote-text">"I have attained the true art of letter writing, which is to say on paper exactly what you would say by word of mouth."</p>
+                <p class="quote-attribution">— Jane to Cassandra</p>
             </div>
+            <p>We know Jane Austen through her novels — witty, sharp, and timeless. But her letters? They are the truest portrait of Jane as a person.</p>
+            <p>Now, for the first time, you can receive Jane's letters as Cassandra did: folded, sealed, creased with travel, and alive with gossip, wit, and sisterly intimacy.</p>
+        </section>
+
+        <!-- What You'll Receive -->
+        <section class="section">
+            <h2>What You'll Receive (12 Letters Over 6 Months)</h2>
+            <p>Each mailing includes <strong>two letters</strong>, carefully recreated with:</p>
 
             <div class="feature-list">
                 <div class="feature-item">
                     <span class="feature-icon">✉️</span>
                     <div class="feature-content">
-                        <h4>Exact historical recreations</h4>
-                        <p>Period-accurate paper, hand-mixed inks, and precise folding techniques</p>
+                        <h4>Exact handwriting recreation</h4>
+                        <p>The exact handwriting and cross-writing (checker work) Jane used to save postage.</p>
                     </div>
                 </div>
 
                 <div class="feature-item">
-                    <span class="feature-icon">🕯️</span>
+                    <span class="feature-icon">🔏</span>
                     <div class="feature-content">
-                        <h4>Authentic wax seals</h4>
-                        <p>Hand-crafted seals using 18th-century methods with Jane's monogram</p>
+                        <h4>Replica wax wafer seals</h4>
+                        <p>Remade from the kinds Jane used, giving you the authentic experience of breaking the seal.</p>
                     </div>
                 </div>
 
                 <div class="feature-item">
-                    <span class="feature-icon">💌</span>
+                    <span class="feature-icon">📚</span>
                     <div class="feature-content">
-                        <h4>Complete correspondence</h4>
-                        <p>Letters to Cassandra, family notes, and her father's publisher letters</p>
+                        <h4>Historical annotations</h4>
+                        <p>Stories drawn from Austen scholar <strong>Juliette Wells</strong> and other experts — revealing context, secrets, and hidden gems.</p>
                     </div>
                 </div>
+            </div>
 
+            <h3>Highlights from the first series:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Jane to Cassandra</h5>
+                    <p>Lively, breathless letters full of fashion notes and family news.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Cassandra's final letter</h5>
+                    <p>Describing Jane's last hours: "She was the sun of my life, the gilder of every pleasure, the soother of every sorrow."</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Censored fragments</h5>
+                    <p>Where Cassandra literally cut away Jane's words with scissors.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Her father's query letter</h5>
+                    <p>Trying (and failing) to publish Jane's early novel <em>First Impressions</em> (later <em>Pride and Prejudice</em>).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Than Letters -->
+        <section class="section">
+            <h2>But It's More Than Letters…</h2>
+            <p>Alongside each reproduction, you'll find <strong>inserts and treasures</strong> that expand Jane's world:</p>
+
+            <div class="feature-list">
                 <div class="feature-item">
                     <span class="feature-icon">📜</span>
                     <div class="feature-content">
-                        <h4>Historical context</h4>
-                        <p>Expert commentary and hidden stories behind each letter</p>
+                        <h4>Tidbits & commentary from Juliette Wells</h4>
+                        <p>Behind-the-scenes scholarship in plain, delightful language.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <div class="feature-content">
+                        <h4>Cassandra's drawings</h4>
+                        <p>Illustrations she made for Jane's teenage writings, including family likenesses hidden in her sketches of queens.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">👗</span>
+                    <div class="feature-content">
+                        <h4>Fashion plates & snippets</h4>
+                        <p>Discover what Jane meant when she gossiped about poppy-red shawls or feather trims.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎶</span>
+                    <div class="feature-content">
+                        <h4>Jane's music book excerpts</h4>
+                        <p>Pages she hand-copied to play on her pianoforte.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🖋</span>
+                    <div class="feature-content">
+                        <h4>Letter-writing lore</h4>
+                        <p>Why postage was charged to the recipient, how Jane economized space, and why letters were often written sideways across the page.</p>
                     </div>
                 </div>
             </div>
+
+            <p style="text-align: center; font-style: italic; margin-top: 2rem;">These aren't just letters — they're <strong>curated mailings</strong>, bringing Jane and Cassandra's world alive in your hands.</p>
         </section>
 
-        <!-- Urgency -->
+        <!-- The Experience -->
         <section class="section">
+            <h2>The Experience</h2>
+            <p>Every two weeks, your mailbox will hold something extraordinary:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>A letter folded and sealed</h5>
+                    <p>Exactly as Jane's was, ready for you to break the seal and unfold.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Context and inserts</h5>
+                    <p>A packet that reveals the daily world of the Austens.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>The art of letter writing</h5>
+                    <p>A reminder that letter writing itself can still be an art.</p>
+                </div>
+            </div>
+
+            <div class="quote-block" style="margin-top: 2rem;">
+                <p class="quote-text">This is not reading history in a book. This is holding it, unfolding it, and being surprised by it — just as Cassandra was.</p>
+            </div>
+        </section>
+
+        <!-- The Bigger Vision -->
+        <section class="section">
+            <h2>The Bigger Vision</h2>
+            <p>This first 12-letter series is the <strong>pilot project.</strong> The funds raised will help us pursue something no one has ever attempted:</p>
+            
             <div class="urgency-section">
-                <h3>Limited to 1,000 subscribers</h3>
-                <p>Due to the handcrafted nature of each letter, we can only accept 1,000 members for our inaugural year.</p>
-                <p><strong>Once we reach capacity, enrollment closes.</strong></p>
-            </div>
-        </section>
-
-        <!-- Social Proof -->
-        <section class="section">
-            <div class="testimonial">
-                <p class="testimonial-text">"I've spent 30 years studying Austen, but holding these recreated letters brought me to tears. It's the closest we'll ever get to sitting with Jane herself."</p>
-                <p class="testimonial-author">— Dr. Margaret Hughes, Austen Scholar</p>
-            </div>
-
-            <div class="testimonial">
-                <p class="testimonial-text">"When our first letter arrived with that broken wax seal... we understood. This isn't a subscription, it's time travel."</p>
-                <p class="testimonial-author">— Sarah M., Book Club Leader</p>
+                <h3>✨ Mailing all 161 surviving Jane Austen letters</h3>
+                <p>In their entirety. Recreated exactly, folded, sealed, posted, as if you were her sister.</p>
+                <p>This will require licensing, access to collections, and meticulous reproduction. But if successful, for the first time in history, Austen's entire correspondence would come alive through the post.</p>
             </div>
         </section>
 
         <!-- Subscribe Form -->
         <section class="section" id="subscribe">
-            <h2>Start your subscription</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Join 1,000 Austen devotees experiencing her letters exactly as Cassandra did.</p>
+            <h2>How to Join</h2>
+            
+            <div class="price-card">
+                <div class="price-detail" style="font-size: 1.125rem; margin-bottom: 1rem;">
+                    <strong>Format:</strong> 12 letters over 6 months (2 per month)<br>
+                    <strong>Price:</strong> Founding subscriber pricing announced at launch<br>
+                    <strong>Launch Goal:</strong> Fund the Complete Jane Austen Letters Project
+                </div>
+            </div>
 
-            <form class="email-form" onsubmit="handleSubmit(event)">
-                <input type="email" class="email-input" placeholder="Enter your email" required>
-                <button type="submit" class="submit-btn">Subscribe - $15/month</button>
-            </form>
+            <p style="text-align: center; margin-bottom: 2rem; font-style: italic;">📬 <strong>Be among the first to receive Jane's words as Cassandra did.</strong> This is more than a subscription. It's a resurrection of a lost art.</p>
+
+            <div style="max-width: 400px; margin: 2rem auto;">
+                <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="submit-btn" style="display: block; text-decoration: none; text-align: center;">Join the Founding Run</a>
+            </div>
 
             <div class="guarantee">
-                <strong>100% satisfaction guarantee</strong> — If you're not completely enchanted by your first letter, we'll refund your entire subscription.
+                <strong>Priority access for founding subscribers</strong> — Be first to know when subscriptions open and receive exclusive launch pricing.
             </div>
         </section>
-
     </div>
 
     <!-- Learn More Tab -->
     <div id="learn-more-tab" class="tab-content">
-        
-        <!-- Introduction -->
+        <!-- Intro -->
         <section class="section">
-            <h2>What makes this extraordinary</h2>
-            
+            <h2>Why this is extraordinary</h2>
+
             <div class="quote-block">
-                <p class="quote-text">What dreadful hot weather we have. It keeps one in a continual state of inelegance.</p>
-                <p class="quote-attribution">— Jane's earliest surviving letter</p>
+                <p class="quote-text">"What dreadful hot weather we have. It keeps one in a continual state of inelegance."</p>
+                <p class="quote-attribution">— From an early letter</p>
             </div>
 
-            <p>For 200 years, we've read Jane Austen's words. But we've never truly seen her letters—the careful folds, the wax seals, the sentences cut out by Cassandra to protect family secrets.</p>
-
-            <p>Each letter tells two stories: the words she wrote, and the world she lived in. This is your chance to experience both.</p>
+            <p>We know Jane Austen through her novels. Her letters — written to her sister Cassandra and family — are the closest encounter with Jane as a person: witty, affectionate, observant, and gloriously human.</p>
+            <p>Each mailing pairs a faithful letter reproduction with context so you see the words and the world that shaped them.</p>
         </section>
 
-        <!-- World First -->
-        <section class="section">
-            <h3>A world-first achievement</h3>
-            
-            <p>In over two centuries since Jane's death, no one has ever compiled all of her surviving letters in their complete physical form.</p>
-
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h5>Scattered worldwide</h5>
-                    <p>Morgan Library (NY), British Library (London), Jane Austen House (Hampshire), Bodleian Library (Oxford), and private collections</p>
-                </div>
-                <div class="feature-card">
-                    <h5>Never complete</h5>
-                    <p>Scholars have transcribed fragments. Museums preserve pieces. But the full story has never been told.</p>
-                </div>
-            </div>
-
-            <p>Until now. We've negotiated with institutions worldwide to bring you the complete collection for the first time in history.</p>
-        </section>
-
-        <!-- Cassandra's Story -->
+        <!-- Through Cassandra's Eyes -->
         <section class="section">
             <h3>Through Cassandra's eyes</h3>
             
@@ -661,80 +668,28 @@
             
             <p>Digital screens create distance. Physical letters create connection. When you unfold Jane's recreated correspondence, you're touching history.</p>
 
-            <button class="back-to-cta" onclick="switchTab('subscribe')">
-                Subscribe Now - $15/month
-            </button>
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="back-to-cta" style="display: block; text-decoration: none; text-align: center;">
+                Join the Founding Run
+            </a>
         </section>
 
     </div>
 
     <script>
         function switchTab(tabName) {
-            // Hide all tab content
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab content
-            const targetTab = document.getElementById(tabName + '-tab');
-            if (targetTab) {
-                targetTab.classList.add('active');
-            }
-            
-            // Add active class to correct button
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+            const target = document.getElementById(tabName + '-tab');
+            if (target) target.classList.add('active');
+
             if (tabName === 'subscribe') {
                 document.querySelector('.tab-btn:first-child').classList.add('active');
-            } else if (tabName === 'learn-more') {
+            } else {
                 document.querySelector('.tab-btn:last-child').classList.add('active');
             }
-            
-            // Scroll to top when switching tabs
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('.email-input').value;
-            
-            const btn = event.target.querySelector('.submit-btn');
-            const originalText = btn.textContent;
-            
-            btn.textContent = 'Processing...';
-            btn.style.background = '#059669';
-            
-            setTimeout(() => {
-                btn.textContent = 'Welcome!';
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = '#1f2937';
-                    event.target.reset();
-                    
-                    alert('🎉 Welcome! Check your email for next steps.');
-                }, 2000);
-            }, 1500);
-
-            console.log('New subscriber:', email);
-        }
-
-        // Smooth scrolling for CTA links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
-            });
-        });
     </script>
 </body>
 </html>
