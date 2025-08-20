@@ -19,7 +19,8 @@
         }
         .tab-buttons {
             display: flex; justify-content: center; gap: 0.5rem;
-            max-width: 300px; margin: 0 auto; background: transparent; border-radius: 8px; padding: 4px;
+            max-width: 600px; margin: 0 auto; background: transparent; border-radius: 8px; padding: 4px;
+            flex-wrap: wrap;
         }
         .tab-buttons {
             display: flex; justify-content: center; gap: 0.5rem;
@@ -339,17 +340,93 @@
         .urgency-section h3 { color: #dc2626; margin-bottom: 1rem; }
         .urgency-section p { color: #7f1d1d; margin-bottom: 1rem; }
 
+        /* Video and Image Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background: #f9fafb;
+            padding: 1rem;
+            text-align: center;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
+        .letter-preview {
+            background: #faf9f7;
+            border: 1px solid #e5e3df;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            position: relative;
+        }
+        .letter-preview::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2rem;
+            height: 2rem;
+            background: #d4af37;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+        .letter-text {
+            font-style: italic;
+            color: #5a4a42;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .letter-signature {
+            text-align: right;
+            font-weight: 500;
+            color: #8b7355;
+        }
+
         /* Responsive */
         @media (min-width: 768px) {
             .hero h1 { font-size: 4rem; }
             .feature-grid { grid-template-columns: 1fr 1fr; }
             .feature-item { display: flex; }
+            .image-gallery { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 640px) {
             .hero { padding: 2rem 1rem; }
             .section { padding: 2rem 1rem; }
-            .tab-navigation { padding: 1rem; }
+            .tab-navigation { padding: 10px; }
             .hero h1 { font-size: 2.5rem; }
+            .image-gallery { grid-template-columns: 1fr; }
+            .tab-btn { padding: 6px 12px; font-size: 12px; }
+            .tab-buttons { gap: 4px; }
         }
     </style>
 </head>
@@ -363,7 +440,425 @@
     </nav>
 
     <!-- Subscribe Tab -->
-    <div id="subscribe-tab" class="tab-content active">
+    <div id="tab1" class="tab-content active">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="limited-badge">✉️ A first-of-its-kind subscription for Janeites</div>
+            <h1>Letters From Jane Austen</h1>
+            <p class="hero-subtitle">Step into Jane's world through her letters — the truest portrait of Jane as a person, folded, sealed, and alive with gossip, wit, and sisterly intimacy.</p>
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="hero-cta">Join the Founding Run</a>
+        </section>
+
+        <!-- Opening Quote -->
+        <section class="section">
+            <div class="quote-block">
+                <p class="quote-text">"I have attained the true art of letter writing, which is to say on paper exactly what you would say by word of mouth."</p>
+                <p class="quote-attribution">— Jane to Cassandra</p>
+            </div>
+            <p>We know Jane Austen through her novels — witty, sharp, and timeless. But her letters? They are the truest portrait of Jane as a person.</p>
+            <p>Now, for the first time, you can receive Jane's letters as Cassandra did: folded, sealed, creased with travel, and alive with gossip, wit, and sisterly intimacy.</p>
+        </section>
+
+        <!-- What You'll Receive -->
+        <section class="section">
+            <div class="price-card">
+                <div class="price">$15<span style="font-size: 1rem; color: #6b7280;">/month</span></div>
+                <p class="price-detail">12 letters • 6 months • Mailed twice per month</p>
+            </div>
+
+            <p>Each mailing includes <strong>two letters</strong>, carefully recreated with:</p>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">✉️</span>
+                    <div class="feature-content">
+                        <h4>Exact handwriting recreation</h4>
+                        <p>The exact handwriting and cross-writing (checker work) Jane used to save postage.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🔏</span>
+                    <div class="feature-content">
+                        <h4>Replica wax wafer seals</h4>
+                        <p>Remade from the kinds Jane used, giving you the authentic experience of breaking the seal.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">📚</span>
+                    <div class="feature-content">
+                        <h4>Historical annotations</h4>
+                        <p>Stories drawn from Austen scholar <strong>Juliette Wells</strong> and other experts — revealing context, secrets, and hidden gems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Highlights from the first series:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Jane to Cassandra</h5>
+                    <p>Lively, breathless letters full of fashion notes and family news.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Cassandra's final letter</h5>
+                    <p>Describing Jane's last hours: "She was the sun of my life, the gilder of every pleasure, the soother of every sorrow."</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Censored fragments</h5>
+                    <p>Where Cassandra literally cut away Jane's words with scissors.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Her father's query letter</h5>
+                    <p>Trying (and failing) to publish Jane's early novel <em>First Impressions</em> (later <em>Pride and Prejudice</em>).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Than Letters -->
+        <section class="section">
+            <h2>But It's More Than Letters…</h2>
+            <p>Alongside each reproduction, you'll find <strong>inserts and treasures</strong> that expand Jane's world:</p>
+
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span class="feature-icon">📜</span>
+                    <div class="feature-content">
+                        <h4>Tidbits & commentary from Juliette Wells</h4>
+                        <p>Behind-the-scenes scholarship in plain, delightful language.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <div class="feature-content">
+                        <h4>Cassandra's drawings</h4>
+                        <p>Illustrations she made for Jane's teenage writings, including family likenesses hidden in her sketches of queens.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">👗</span>
+                    <div class="feature-content">
+                        <h4>Fashion plates & snippets</h4>
+                        <p>Discover what Jane meant when she gossiped about poppy-red shawls or feather trims.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🎶</span>
+                    <div class="feature-content">
+                        <h4>Jane's music book excerpts</h4>
+                        <p>Pages she hand-copied to play on her pianoforte.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feature-icon">🖋</span>
+                    <div class="feature-content">
+                        <h4>Letter-writing lore</h4>
+                        <p>Why postage was charged to the recipient, how Jane economized space, and why letters were often written sideways across the page.</p>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; font-style: italic; margin-top: 2rem;">These aren't just letters — they're <strong>curated mailings</strong>, bringing Jane and Cassandra's world alive in your hands.</p>
+        </section>
+
+        <!-- The Experience -->
+        <section class="section">
+            <h2>The Experience</h2>
+            <p>Every two weeks, your mailbox will hold something extraordinary:</p>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>A letter folded and sealed</h5>
+                    <p>Exactly as Jane's was, ready for you to break the seal and unfold.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Context and inserts</h5>
+                    <p>A packet that reveals the daily world of the Austens.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>The art of letter writing</h5>
+                    <p>A reminder that letter writing itself can still be an art.</p>
+                </div>
+            </div>
+
+            <div class="quote-block" style="margin-top: 2rem;">
+                <p class="quote-text">This is not reading history in a book. This is holding it, unfolding it, and being surprised by it — just as Cassandra was.</p>
+            </div>
+        </section>
+
+        <!-- The Bigger Vision -->
+        <section class="section">
+            <h2>The Bigger Vision</h2>
+            <p>This first 12-letter series is the <strong>pilot project.</strong> The funds raised will help us pursue something no one has ever attempted:</p>
+            
+            <div class="urgency-section">
+                <h3>✨ Mailing all 161 surviving Jane Austen letters</h3>
+                <p>In their entirety. Recreated exactly, folded, sealed, posted, as if you were her sister.</p>
+                <p>This will require licensing, access to collections, and meticulous reproduction. But if successful, for the first time in history, Austen's entire correspondence would come alive through the post.</p>
+            </div>
+        </section>
+
+        <!-- Subscribe Form -->
+        <section class="section" id="subscribe">
+            <h2>How to Join</h2>
+            
+            <div class="price-card">
+                <div class="price-detail" style="font-size: 1.125rem; margin-bottom: 1rem;">
+                    <strong>Format:</strong> 12 letters over 6 months (2 per month)<br>
+                    <strong>Price:</strong> Founding subscriber pricing announced at launch<br>
+                    <strong>Launch Goal:</strong> Fund the Complete Jane Austen Letters Project
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-bottom: 2rem; font-style: italic;">📬 <strong>Be among the first to receive Jane's words as Cassandra did.</strong> This is more than a subscription. It's a resurrection of a lost art.</p>
+
+            <div style="max-width: 400px; margin: 2rem auto;">
+                <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="submit-btn" style="display: block; text-decoration: none; text-align: center;">Join the Founding Run</a>
+            </div>
+
+            <div class="guarantee">
+                <strong>Priority access for founding subscribers</strong> — Be first to know when subscriptions open and receive exclusive launch pricing.
+            </div>
+        </section>
+    </div>
+
+    <!-- Learn More Tab -->
+    <div id="tab2" class="tab-content">
+        <!-- Intro -->
+        <section class="section">
+            <h2>Why this is extraordinary</h2>
+
+            <div class="quote-block">
+                <p class="quote-text">"What dreadful hot weather we have. It keeps one in a continual state of inelegance."</p>
+                <p class="quote-attribution">— From an early letter</p>
+            </div>
+
+            <p>We know Jane Austen through her novels. Her letters — written to her sister Cassandra and family — are the closest encounter with Jane as a person: witty, affectionate, observant, and gloriously human.</p>
+            <p>Each mailing pairs a faithful letter reproduction with context so you see the words and the world that shaped them.</p>
+        </section>
+
+        <!-- Through Cassandra's Eyes -->
+        <section class="section">
+            <h3>Through Cassandra's eyes</h3>
+            
+            <p>Jane's beloved sister Cassandra wasn't just her closest confidant—she was a talented artist whose watercolors capture the world Jane inhabited.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">I have lost a treasure, such a sister, such a friend as never can have been surpassed.</p>
+                <p class="quote-attribution">— Cassandra on Jane's death</p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Original artwork</h5>
+                    <p>High-quality reproductions of Cassandra's watercolors from each letter's period</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Family portraits</h5>
+                    <p>See the faces Jane knew and loved, painted by the sister who knew her best</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Father's Support -->
+        <section class="section">
+            <h3>A father's revolutionary faith</h3>
+            
+            <p>Reverend George Austen didn't just encourage Jane's writing—he actively championed it. In 1797, he wrote to publisher Thomas Cadell:</p>
+
+            <div class="quote-block">
+                <p class="quote-text">Sir, I have in my possession a manuscript novel, comprising 3 vols., about the length of Miss Burney's Evelina...</p>
+                <p class="quote-attribution">— George Austen to Thomas Cadell, 1797</p>
+            </div>
+
+            <p>This was unheard of—a father promoting his daughter's literary ambitions when women barely had publishing rights. You'll receive this groundbreaking letter as part of your collection.</p>
+        </section>
+
+        <!-- Letter Writing Economics -->
+        <section class="section">
+            <h3>The economics of letter writing</h3>
+            
+            <p>Jane claimed she had "attained the true art of letter writing, which is to say on paper exactly what you would say to a person by word of mouth."</p>
+
+            <div class="quote-block">
+                <p class="quote-text">I've been talking to you as fast as I could the whole of this letter.</p>
+                <p class="quote-attribution">— Jane to Cassandra</p>
+            </div>
+
+            <p>But there's genius in the cramped handwriting. Postage was paid by the recipient and charged by sheets and distance. Neither sister had money to spare, so Jane packed entire conversations onto single pages.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Economic reality</h5>
+                    <p>Single sheet = less cost. See how Jane squeezed maximum emotion into minimal space.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Free postage</h5>
+                    <p>When you see two sheets? Jane had found free postage or hand delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hidden Secrets -->
+        <section class="section">
+            <h3>What Cassandra hid (and why)</h3>
+            
+            <p>After Jane's death, Cassandra carefully preserved her sister's letters—while protecting family secrets. You can see where she cut out sentences, likely removing unkind remarks or health details.</p>
+
+            <div class="quote-block">
+                <p class="quote-text">She was the sun of my life, the gilder of every pleasure, the soother of every sorrow. I had not a thought concealed from her... it is as if I lost a part of myself.</p>
+                <p class="quote-attribution">— Cassandra's grief letter</p>
+            </div>
+
+            <p>Each subscription reveals these hidden stories—what survived, what was cut away, and why.</p>
+        </section>
+
+        <!-- Physical Experience -->
+        <section class="section">
+            <h3>Why physical letters matter</h3>
+            
+            <p>There's something your phone screen can't replicate. The weight of paper. The anticipation as you unfold each crease. The intimacy of holding something meant for one person's eyes.</p>
+
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Authentic materials</h5>
+                    <p>Period-accurate paper, hand-mixed inks, traditional folding techniques</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Wax seals</h5>
+                    <p>Hand-crafted using 18th-century methods with Jane's monogram</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Mail experience</h5>
+                    <p>Delivered exactly as Cassandra received them—through your letterbox</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Hidden treasures</h5>
+                    <p>Pressed flowers, historical artifacts, and period extras in each delivery</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="section">
+            <h3>Ready to experience history?</h3>
+            
+            <p>Digital screens create distance. Physical letters create connection. When you unfold Jane's recreated correspondence, you're touching history.</p>
+
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="back-to-cta" style="display: block; text-decoration: none; text-align: center;">
+                Join the Founding Run
+            </a>
+        </section>
+    </div>
+
+    <!-- View Letters Tab -->
+    <div id="tab3" class="tab-content">
+        <!-- Video Introduction -->
+        <section class="section">
+            <h2>See Jane's Letters Come to Life</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Experience the authentic recreation process and discover what makes these letters extraordinary.</p>
+            
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/videoseries?list=UUgibranmrubio" 
+                    title="Letters From Jane Austen - Behind the Scenes" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Letter Previews -->
+        <section class="section">
+            <h3>Preview Jane's Voice</h3>
+            <p>Here's a glimpse of the wit, warmth, and intimate details you'll discover in her authentic correspondence:</p>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "What dreadful hot weather we have! It keeps one in a continual state of inelegance... I shall not be able to send this till tomorrow, as Tom is not likely to come home tonight."
+                </div>
+                <div class="letter-signature">— Jane to Cassandra, September 1796</div>
+            </div>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "I have now attained the true art of letter-writing, which we are always told, is to express on paper exactly what one would say to the same person by word of mouth."
+                </div>
+                <div class="letter-signature">— Jane to Cassandra, January 1801</div>
+            </div>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "She was the sun of my life, the gilder of every pleasure, the soother of every sorrow; I had not a thought concealed from her, and it is as if I had lost a part of myself."
+                </div>
+                <div class="letter-signature">— Cassandra's grief letter after Jane's death</div>
+            </div>
+        </section>
+
+        <!-- Historical Images -->
+        <section class="section">
+            <h3>From the Morgan Library Collection</h3>
+            <p>Authentic manuscripts and portraits that inspired our recreations:</p>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f4f2f0/8b7355?text=Jane+Austen+Portrait" alt="Portrait of Jane Austen">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Portrait by Cassandra Austen, c. 1810</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/faf9f7/5a4a42?text=Original+Letter" alt="Original Jane Austen letter">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Original letter with cross-writing</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f0f4f0/2d5016?text=Cassandra%27s+Art" alt="Cassandra's watercolor">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Cassandra's watercolor illustration</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f4f0f2/8b4513?text=Wax+Seal" alt="Historical wax seal">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Period wax seal recreation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Experience -->
+        <section class="section">
+            <h3>What You'll Hold in Your Hands</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Authentic Paper Texture</h5>
+                    <p>Feel the same weight and texture Cassandra experienced when she first received Jane's letters.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Original Folding Methods</h5>
+                    <p>Each letter folded exactly as Jane did it—no envelopes, just paper and sealing wax.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Cross-Writing Recreation</h5>
+                    <p>See Jane's ingenious "checker work"—writing perpendicular over existing text to save postage.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Hand-Applied Seals</h5>
+                    <p>Break authentic wax seals crafted with Jane's monogram and period-accurate techniques.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <h3>Ready to Hold History?</h3>
+            <p style="text-align: center;">These aren't just letters—they're time machines. Each one brings you closer to Jane's world than any book or screen ever could.</p>
+            
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="back-to-cta" style="display: block; text-decoration: none; text-align: center;">
+                Join the Founding Run
+            </a>
+        </section>
+    </div>
         <!-- Hero -->
         <section class="hero">
             <div class="limited-badge">✉️ A first-of-its-kind subscription for Janeites</div>
@@ -545,8 +1040,113 @@
         </section>
     </div>
 
+    <!-- View the Letters Tab -->
+    <div id="tab3" class="tab-content">
+        <!-- Video Introduction -->
+        <section class="section">
+            <h2>See Jane's Letters Come to Life</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Experience the authentic recreation process and discover what makes these letters extraordinary.</p>
+            
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/videoseries?list=UUgibranmrubio" 
+                    title="Letters From Jane Austen - Behind the Scenes" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Letter Previews -->
+        <section class="section">
+            <h3>Preview Jane's Voice</h3>
+            <p>Here's a glimpse of the wit, warmth, and intimate details you'll discover in her authentic correspondence:</p>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "What dreadful hot weather we have! It keeps one in a continual state of inelegance... I shall not be able to send this till tomorrow, as Tom is not likely to come home tonight."
+                </div>
+                <div class="letter-signature">— Jane to Cassandra, September 1796</div>
+            </div>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "I have now attained the true art of letter-writing, which we are always told, is to express on paper exactly what one would say to the same person by word of mouth."
+                </div>
+                <div class="letter-signature">— Jane to Cassandra, January 1801</div>
+            </div>
+
+            <div class="letter-preview">
+                <div class="letter-text">
+                    "She was the sun of my life, the gilder of every pleasure, the soother of every sorrow; I had not a thought concealed from her, and it is as if I had lost a part of myself."
+                </div>
+                <div class="letter-signature">— Cassandra's grief letter after Jane's death</div>
+            </div>
+        </section>
+
+        <!-- Historical Images -->
+        <section class="section">
+            <h3>From the Morgan Library Collection</h3>
+            <p>Authentic manuscripts and portraits that inspired our recreations:</p>
+            
+            <div class="image-gallery">
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f4f2f0/8b7355?text=Jane+Austen+Portrait" alt="Portrait of Jane Austen">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Portrait by Cassandra Austen, c. 1810</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/faf9f7/5a4a42?text=Original+Letter" alt="Original Jane Austen letter">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Original letter with cross-writing</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f0f4f0/2d5016?text=Cassandra%27s+Art" alt="Cassandra's watercolor">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Cassandra's watercolor illustration</p>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://via.placeholder.com/300x200/f4f0f2/8b4513?text=Wax+Seal" alt="Historical wax seal">
+                    <p style="font-size: 0.875rem; color: #6b7280; margin: 0;">Period wax seal recreation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You'll Experience -->
+        <section class="section">
+            <h3>What You'll Hold in Your Hands</h3>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h5>Authentic Paper Texture</h5>
+                    <p>Feel the same weight and texture Cassandra experienced when she first received Jane's letters.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Original Folding Methods</h5>
+                    <p>Each letter folded exactly as Jane did it—no envelopes, just paper and sealing wax.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Cross-Writing Recreation</h5>
+                    <p>See Jane's ingenious "checker work"—writing perpendicular over existing text to save postage.</p>
+                </div>
+                <div class="feature-card">
+                    <h5>Hand-Applied Seals</h5>
+                    <p>Break authentic wax seals crafted with Jane's monogram and period-accurate techniques.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <h3>Ready to Hold History?</h3>
+            <p style="text-align: center;">These aren't just letters—they're time machines. Each one brings you closer to Jane's world than any book or screen ever could.</p>
+            
+            <a href="https://buy.stripe.com/dRm4gzb47cSl2dq2Y74Ni01" class="back-to-cta" style="display: block; text-decoration: none; text-align: center;">
+                Join the Founding Run
+            </a>
+        </section>
+    </div>
+
     <!-- Learn More Tab -->
-    <div id="learn-more-tab" class="tab-content">
+    <div id="tab2" class="tab-content">
         <!-- Intro -->
         <section class="section">
             <h2>Why this is extraordinary</h2>
@@ -676,20 +1276,71 @@
     </div>
 
     <script>
-        function switchTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-
-            const target = document.getElementById(tabName + '-tab');
-            if (target) target.classList.add('active');
-
-            if (tabName === 'subscribe') {
-                document.querySelector('.tab-btn:first-child').classList.add('active');
-            } else {
-                document.querySelector('.tab-btn:last-child').classList.add('active');
+        function showTab(tabNumber) {
+            console.log('Switching to tab:', tabNumber);
+            
+            // Hide all tabs
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+            const tab3 = document.getElementById('tab3');
+            
+            console.log('Found tabs:', !!tab1, !!tab2, !!tab3);
+            
+            if (tab1) {
+                tab1.classList.remove('active');
+                console.log('Hidden tab1');
             }
+            if (tab2) {
+                tab2.classList.remove('active');
+                console.log('Hidden tab2');
+            }
+            if (tab3) {
+                tab3.classList.remove('active');
+                console.log('Hidden tab3');
+            }
+            
+            // Reset all button styles
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            const btn3 = document.getElementById('btn3');
+            
+            if (btn1) btn1.style.background = 'linear-gradient(145deg, #f0f2f5, #d8dde6)';
+            if (btn2) btn2.style.background = 'linear-gradient(145deg, #f0f2f5, #d8dde6)';
+            if (btn3) btn3.style.background = 'linear-gradient(145deg, #f0f2f5, #d8dde6)';
+            
+            // Show selected tab and style button
+            const selectedTab = document.getElementById('tab' + tabNumber);
+            const selectedBtn = document.getElementById('btn' + tabNumber);
+            
+            console.log('Selected tab:', selectedTab);
+            console.log('Selected button:', selectedBtn);
+            
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+                console.log('Showing tab' + tabNumber);
+            } else {
+                console.error('Could not find tab' + tabNumber);
+            }
+            
+            if (selectedBtn) {
+                selectedBtn.style.background = 'linear-gradient(145deg, #e8f0e8, #d4e4d4)';
+                console.log('Activated btn' + tabNumber);
+            }
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Page loaded, checking all elements...');
+            console.log('tab1:', document.getElementById('tab1'));
+            console.log('tab2:', document.getElementById('tab2'));
+            console.log('tab3:', document.getElementById('tab3'));
+            console.log('btn1:', document.getElementById('btn1'));
+            console.log('btn2:', document.getElementById('btn2'));
+            console.log('btn3:', document.getElementById('btn3'));
+            showTab(1); // Start with Subscribe tab
+        });
     </script>
 </body>
 </html>
