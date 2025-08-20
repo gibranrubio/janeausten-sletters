@@ -349,6 +349,126 @@
             .tab-btn { padding: 6px 12px; font-size: 12px; }
             .tab-buttons { gap: 4px; }
         }
+
+        /* Footer */
+        .footer {
+            background: #f9fafb;
+            border-top: 1px solid #e5e7eb;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .footer h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 1rem;
+        }
+        .footer p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.2s ease;
+        }
+        .footer-links a:hover {
+            color: #111827;
+        }
+        .footer-bottom {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #6b7280;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #111827;
+        }
+        .modal h2 {
+            color: #111827;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-right: 3rem;
+        }
+        .modal h3 {
+            color: #111827;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+        }
+        .modal p {
+            color: #4b5563;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        .modal ul {
+            color: #4b5563;
+            margin: 1rem 0 1rem 1.5rem;
+        }
+        .modal li {
+            margin-bottom: 0.5rem;
+        }
+        .modal-date {
+            color: #6b7280;
+            font-size: 0.875rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -676,6 +796,189 @@
         </section>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>Letters From Jane Austen</h3>
+            <p>Bringing the authentic experience of Jane's correspondence to your mailbox. A first-of-its-kind subscription for Janeites and lovers of historical authenticity.</p>
+            
+            <div class="footer-links">
+                <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
+                <a href="#" onclick="openModal('terms')">Terms of Service</a>
+                <a href="#" onclick="openModal('contact')">Contact Us</a>
+                <a href="#" onclick="openModal('shipping')">Shipping Info</a>
+                <a href="#about">About the Project</a>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Letters From Jane Austen. All rights reserved. | Designed with love for Janeites everywhere.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('privacy')">&times;</button>
+            <h2>Privacy Policy</h2>
+            <p class="modal-date">Last updated: 07/01/25</p>
+            
+            <p>Welcome to Letters From Jane Austen. By visiting our website, placing an order, or subscribing to our mailings, you agree to the terms and conditions outlined below. Please read them carefully—just like one of our letters.</p>
+            
+            <h3>1. Overview</h3>
+            <p>This website is operated by Letters From Jane Austen. Throughout the site, the terms "we," "us," and "our" refer to Letters From Jane Austen. By using our site or purchasing something from us, you agree to be bound by the following terms, including any additional policies linked here. These Terms apply to all users of the site, including browsers, customers, vendors, and content contributors.</p>
+            
+            <h3>2. Use of Our Site</h3>
+            <p>By accessing or using any part of our website, you agree to be bound by these Terms of Service. If you do not agree to all the terms, then you may not access the website or use any of our services. We reserve the right to update, change, or replace any part of these Terms at any time by posting updates here. It's your responsibility to check this page periodically for changes.</p>
+            
+            <h3>3. Your Account</h3>
+            <p>When you create an account or subscribe, you agree to provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account and for all activity that occurs under it. We reserve the right to refuse service, terminate accounts, or cancel orders if we suspect any violation of these Terms.</p>
+            
+            <h3>4. Products & Subscriptions</h3>
+            <p>We do our best to describe our letter experiences and products as accurately as possible—but some things are better felt than explained. We reserve the right to:</p>
+            <ul>
+                <li>Limit or cancel orders</li>
+                <li>Change pricing without notice</li>
+                <li>Modify or discontinue a product or subscription at any time</li>
+            </ul>
+            
+            <h3>5. Shipping & Delivery</h3>
+            <p>We ship every two weeks based on your subscription cycle. While we pack each envelope with care and love, delays can occasionally happen due to postal issues or high demand. Please ensure your mailing address is correct—we are not responsible for letters lost due to incorrect or incomplete information.</p>
+            
+            <h3>6. Returns & Refunds</h3>
+            <p>Due to the nature of our mailed experiences, all sales are final. If your order arrives damaged or if something's gone awry, reach out to us at support@lettersfromjaneausten.com. We'll make it right when we can.</p>
+            
+            <h3>7. Third-Party Tools & Links</h3>
+            <p>We may use third-party services or include links to external sites. We're not responsible for their content, privacy practices, or actions. Please review their terms before engaging.</p>
+            
+            <h3>8. Personal Information</h3>
+            <p>Your submission of personal information is governed by our Privacy Policy. In short: we handle your information with care and only share it with trusted providers when necessary.</p>
+            
+            <h3>9. Prohibited Uses</h3>
+            <p>You agree not to use our site or services for any unlawful, abusive, or disruptive purpose. That includes violating any local laws, spamming, or interfering with the experience of other readers.</p>
+            
+            <h3>10. Limitation of Liability</h3>
+            <p>We don't promise your life will change from one letter—but we do our best to deliver something beautiful. That said, Letters From Jane Austen shall not be liable for any damages arising from your use of our services, including but not limited to delivery delays, missed expectations, or third-party interactions.</p>
+            
+            <h3>11. Governing Law</h3>
+            <p>These Terms are governed by the laws of the United States. Questions? We're just a message away. For any questions about these Terms, email us at support@lettersfromjaneausten.com. We'll respond as thoughtfully as we write.</p>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div id="terms" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('terms')">&times;</button>
+            <h2>Terms & Conditions</h2>
+            <p class="modal-date">Last updated: 07/01/25</p>
+            
+            <p>Welcome to Letters From Jane Austen. By visiting our website, placing an order, or subscribing to our mailings, you agree to the terms and conditions outlined below. Please read them carefully—just like one of our letters.</p>
+            
+            <h3>1. Overview</h3>
+            <p>This website is operated by Letters From Jane Austen. Throughout the site, the terms "we," "us," and "our" refer to Letters From Jane Austen. By using our site or purchasing something from us, you agree to be bound by the following terms, including any additional policies linked here. These Terms apply to all users of the site, including browsers, customers, vendors, and content contributors.</p>
+            
+            <h3>2. Use of Our Site</h3>
+            <p>By accessing or using any part of our website, you agree to be bound by these Terms of Service. If you do not agree to all the terms, then you may not access the website or use any of our services. We reserve the right to update, change, or replace any part of these Terms at any time by posting updates here. It's your responsibility to check this page periodically for changes.</p>
+            
+            <h3>3. Your Account</h3>
+            <p>When you create an account or subscribe, you agree to provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account and for all activity that occurs under it. We reserve the right to refuse service, terminate accounts, or cancel orders if we suspect any violation of these Terms.</p>
+            
+            <h3>4. Products & Subscriptions</h3>
+            <p>We do our best to describe our letter experiences and products as accurately as possible—but some things are better felt than explained. We reserve the right to:</p>
+            <ul>
+                <li>Limit or cancel orders</li>
+                <li>Change pricing without notice</li>
+                <li>Modify or discontinue a product or subscription at any time</li>
+            </ul>
+            
+            <h3>5. Shipping & Delivery</h3>
+            <p>We ship every two weeks based on your subscription cycle. While we pack each envelope with care and love, delays can occasionally happen due to postal issues or high demand. Please ensure your mailing address is correct—we are not responsible for letters lost due to incorrect or incomplete information.</p>
+            
+            <h3>6. Returns & Refunds</h3>
+            <p>Due to the nature of our mailed experiences, all sales are final. If your order arrives damaged or if something's gone awry, reach out to us at support@lettersfromjaneausten.com. We'll make it right when we can.</p>
+            
+            <h3>7. Third-Party Tools & Links</h3>
+            <p>We may use third-party services or include links to external sites. We're not responsible for their content, privacy practices, or actions. Please review their terms before engaging.</p>
+            
+            <h3>8. Personal Information</h3>
+            <p>Your submission of personal information is governed by our Privacy Policy. In short: we handle your information with care and only share it with trusted providers when necessary.</p>
+            
+            <h3>9. Prohibited Uses</h3>
+            <p>You agree not to use our site or services for any unlawful, abusive, or disruptive purpose. That includes violating any local laws, spamming, or interfering with the experience of other readers.</p>
+            
+            <h3>10. Limitation of Liability</h3>
+            <p>We don't promise your life will change from one letter—but we do our best to deliver something beautiful. That said, Letters From Jane Austen shall not be liable for any damages arising from your use of our services, including but not limited to delivery delays, missed expectations, or third-party interactions.</p>
+            
+            <h3>11. Governing Law</h3>
+            <p>These Terms are governed by the laws of the United States. Questions? We're just a message away. For any questions about these Terms, email us at support@lettersfromjaneausten.com. We'll respond as thoughtfully as we write.</p>
+        </div>
+    </div>
+
+    <!-- Shipping Info Modal -->
+    <div id="shipping" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('shipping')">&times;</button>
+            <h2>Shipping & Returns</h2>
+            <p class="modal-date">Last updated: 07/02/25</p>
+            
+            <p>At Letters From Jane Austen, we pack each envelope with care—and a little magic. Below you'll find all the practical details on how and when your letters arrive, and what to do if something goes wrong along the way.</p>
+            
+            <h3>Shipping</h3>
+            <p>We ship letters every two weeks, based on your subscription cycle.</p>
+            <ul>
+                <li>Shipping within the U.S. is handled by USPS First Class Mail. Most letters arrive within 5–7 business days after being sent.</li>
+                <li>For international subscribers (coming soon!), shipping times may vary by region.</li>
+            </ul>
+            <p>We'll send you a confirmation email when your letter ships. If you have questions about timing, feel free to contact us at support@lettersfromjaneausten.com.</p>
+            
+            <h3>Make Sure Your Address Is Correct</h3>
+            <p>Please double-check your mailing address before placing an order. We cannot replace letters shipped to an incorrect or outdated address provided at checkout.</p>
+            
+            <h3>Lost or Delayed Letters</h3>
+            <p>If your letter hasn't arrived within 10 business days of your shipping confirmation, reach out to us at support@lettersfromjaneausten.com. We'll do our best to track it down or send a replacement if needed.</p>
+            
+            <h3>Returns & Refunds</h3>
+            <p>Because our letters are made to order and part of a serialized story experience, all sales are final. We're a tiny team, and we appreciate your understanding. That said, if something arrives damaged or you feel like something's gone wrong, please email us—we're human, and we'll do everything we can to make it right.</p>
+            
+            <h3>Gifting?</h3>
+            <p>Gifting a subscription? Wonderful! Be sure to enter the recipient's name and address correctly. You can include a custom message at checkout (or email us if you'd like to include something special).</p>
+            
+            <p><strong>Questions?</strong> Email us anytime at support@lettersfromjaneausten.com—we're happy to help.</p>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div id="contact" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('contact')">&times;</button>
+            <h2>Contact Us</h2>
+            
+            <p>We'd love to hear from you! Whether you have questions about your subscription, want to share your experience with Jane's letters, or simply wish to connect with fellow Janeites, we're here.</p>
+            
+            <h3>Get in Touch</h3>
+            <p><strong>Email:</strong> support@lettersfromjaneausten.com</p>
+            <p><strong>Response Time:</strong> We typically respond within 1-2 business days</p>
+            
+            <h3>What We Can Help With</h3>
+            <ul>
+                <li>Subscription questions and account management</li>
+                <li>Shipping and delivery issues</li>
+                <li>Billing and payment concerns</li>
+                <li>Gift subscription assistance</li>
+                <li>General questions about the Jane Austen Letters Project</li>
+                <li>Technical support for our website</li>
+            </ul>
+            
+            <h3>Share Your Experience</h3>
+            <p>Have you received one of Jane's letters? We'd love to hear about your experience! Share photos of your unboxing, tell us your favorite moments, or let us know how the letters have enhanced your appreciation for Jane Austen.</p>
+            
+            <h3>Partnership Inquiries</h3>
+            <p>Interested in collaborating with Letters From Jane Austen? We're always open to discussing partnerships with museums, literary societies, educational institutions, and fellow Austen enthusiasts.</p>
+            
+            <p>We respond as thoughtfully as we write, so thank you for your patience as we craft our reply.</p>
+        </div>
+    </div>
+
     <script>
         function showTab(tabNumber) {
             // Hide all tabs
@@ -701,6 +1004,41 @@
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
         
         // Initialize on load
         document.addEventListener('DOMContentLoaded', function() {
